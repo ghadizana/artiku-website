@@ -45,7 +45,7 @@ class ArticleController extends Controller
     public function edit ($id)
     {
         $article = Articles::find($id);
-        return view('article.edit', compact('task'));
+        return view('article.edit', compact('article'));
     }
 
     public function update (ArticleRequest $request, $id)
@@ -68,5 +68,13 @@ class ArticleController extends Controller
         return view('article.page', [
             'data' => $article
         ]);
+    }
+
+    public function destroy ($id)
+    {
+        $article = Articles::find($id);
+        $article->delete();
+
+        return redirect('/articles');
     }
 }
