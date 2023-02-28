@@ -2,7 +2,7 @@
 @section('main')
 <div class="container">
     <div class="row">
-      <form method="POST" action="{{ url('/articles') }}">
+      <form method="POST" action="{{ url('/articles') }}" enctype="multipart/form-data">
         @csrf
         <div class="col-md-8 col-sm-12 bg-white p-4">          
             <div class="form-group">

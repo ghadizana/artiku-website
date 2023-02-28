@@ -9,21 +9,21 @@ use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
-    // public function index (Request $request) 
-    // {
-    //     if($request->search) {
-    //         $article = Articles::where('article', 'LIKE', "%$request->search%")->paginate(10);
+    public function index (Request $request) 
+    {
+        if($request->search) {
+            $article = Articles::where('articles', 'LIKE', "%$request->search%")->paginate(10);
 
-    //         return view('welcome', [
-    //             'data' => $article
-    //         ]);
-    //     };
+            return view('article.index', [
+                'data' => $article
+            ]);
+        };
         
-    //     $article = Articles::paginate(10);
-    //     return view('welcome', [
-    //         'data' => $article
-    //     ]);
-    // }
+        $article = Articles::paginate(10);
+        return view('article.index', [
+            'data' => $article
+        ]);
+    }
 
     public function create ()
     {
@@ -36,9 +36,37 @@ class ArticleController extends Controller
             'title' => $request->title,
             'synopsis' => $request->synopsis,
             'content' => $request->content,
-            'image' => $request->image,
+            'image' => $request->image
         ]);
 
         return redirect('/articles');
+    }
+
+    public function edit ($id)
+    {
+        $article = Articles::find($id);
+        return view('article.edit', compact('task'));
+    }
+
+    public function update (ArticleRequest $request, $id)
+    {
+        $article = Articles::find($id);
+
+        $article->update ([
+            'title' => $request->title,
+            'synopsis' => $request->synopsis,
+            'content' => $request->content,
+            'image' => $request->image
+        ]);
+
+        return redirect('/articles');
+    }
+
+    public function show ($id)
+    {
+        $article = Articles::find ($id);
+        return view('article.page', [
+            'data' => $article
+        ]);
     }
 }

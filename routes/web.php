@@ -17,7 +17,7 @@ use App\Http\Controllers\ArticleController;
 */
 
 Route::get('/', [HomeController::class, 'index']);
-// Route::get('/articles', [ArticleController::class, 'index']);
+Route::get('/articles', [ArticleController::class, 'index']);
 Route::get('/articles/data/create', [ArticleController::class, 'create']);
 Route::get('articles/{id}', [ArticleController::class, 'show']);
 Route::post('/articles', [ArticleController::class, 'store']);
