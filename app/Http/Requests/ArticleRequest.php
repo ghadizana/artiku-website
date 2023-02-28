@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ArticleRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class ArticleRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +24,23 @@ class ArticleRequest extends FormRequest
      */
     public function rules()
     {
+        $rule_article_unique = Rule::unique('articles', 'title');
+        if ($this->method() !== 'POST') {
+            $rule_article_unique->ignore($this->route()->parameter('id'));
+        }
+
         return [
-            //
+            'title' => ['required', $rule_article_unique],
+            'synopsis' => ['required'],
+            'content' => ['required'],
+            'image' => ['required']
+        ];
+    }
+
+    public function messages () 
+    {
+        return [
+            'required' => 'This column must be filled',
         ];
     }
 }

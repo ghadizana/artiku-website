@@ -44,28 +44,33 @@
     </div>
 
     <!-- Card -->
+    @foreach ($data as $item)
     <div class="row">
         <div class="col-sm-6 mb-3 mb-sm-0">
             <div class="card">
                 <div class="card-body">
-                    <img src="#" alt="Foto-1" max-width="576px">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
+                    <img src="#" alt="Foto-1" max-width="576px" href="{{ $item->image }}">
+                    <h5 class="card-title">{{ $item->title }}</h5>
+                    <p class="card-text">{{ $item->synopsis }}</p>
+                    {{-- <p class="card-text">{{ $item->content }}</p> --}}
+                    <a href="{{ url("/articles/$item->id") }}" class="btn btn-primary">Read More</a>
                 </div>
             </div>
         </div>
-        <div class="col-sm-6">
+        {{-- <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <img src="" alt="Foto-1">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
+                    <img src="" alt="Foto-1" max-width="576px" {{ $item->image }}>
+                    <h5 class="card-title">{{ $item->title }}</h5>
+                    <p class="card-text">{{ $item->synopsis }}</p>
+                    <p class="card-text">{{ $item->content }}</p>
+                    <a href="{{ url("/articles/$item->id") }}" class="btn btn-primary">Read More</a>
+
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
+    @endforeach
 
     <!-- Sign Up Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -210,5 +215,7 @@
                 </section>
             </div>
         </div>
-    </div>  
+    </div> 
+
+
 @endsection
