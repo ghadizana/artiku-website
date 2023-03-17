@@ -1,8 +1,8 @@
 @extends('layouts.app')
 @section('main')
 <div class="container">
-    <div class="row">
-      <form method="POST" action="{{ url("articles/$article->id") }}" enctype="multipart/form-data">
+    <div class="row mt-5 p-5">
+      <form method="POST" action="{{ url("articles/$article->slug") }}" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="col-md-8 col-sm-12 bg-white p-4">          

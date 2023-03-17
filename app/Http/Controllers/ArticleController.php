@@ -5,74 +5,80 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Articles;
-use Illuminate\Support\Facades\DB;
+use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class ArticleController extends Controller
 {
-    public function index (Request $request) 
+    public function __construct()
     {
-        if($request->search) {
-            $article = Articles::where('articles', 'LIKE', "%$request->search%")->paginate(10);
+        $this->middleware('auth');
+    }
 
-            return view('article.index', [
-                'data' => $article
-            ]);
-        };
-        
-        $article = Articles::paginate(10);
+    public function index()
+    {
+        $article = Articles::all();
         return view('article.index', [
             'data' => $article
         ]);
     }
 
-    public function create ()
+    public function create()
     {
         return view('article.create');
     }
 
-    public function store (ArticleRequest $request)
-    {
-        Articles::create ([
-            'title' => $request->title,
-            'synopsis' => $request->synopsis,
-            'content' => $request->content,
-            'image' => $request->image
+    public function store(Request $request)
+    {     
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+            'image' => 'required|mimes:jpg,png,jpeg|max:5048'
+        ]);
+
+        $newImageName = uniqid() . '-' . $request->title . '.' . 
+        $request->image->extension();
+        $request->image->move(public_path('post-image'), $newImageName);
+        
+        Articles::create([
+            'title' => $request->input('title'),
+            'synopsis' => $request->input('title'),            
+            'content' => $request->input('content'),
+            'slug' => SlugService::createSlug(Articles::class, 'slug', $request->title),
+            'image' => $newImageName,
+            'user_id' => auth()->user()->id
         ]);
 
         return redirect('/articles');
     }
 
-    public function edit ($id)
+    public function edit($slug)
     {
-        $article = Articles::find($id);
-        return view('article.edit', compact('article'));
+        return view('article.edit')
+            ->with('article', Articles::where('slug', $slug)->first());
     }
 
-    public function update (ArticleRequest $request, $id)
+    public function update(ArticleRequest $request, $slug)
     {
-        $article = Articles::find($id);
-
-        $article->update ([
-            'title' => $request->title,
-            'synopsis' => $request->synopsis,
-            'content' => $request->content,
-            'image' => $request->image
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
         ]);
+
+        Articles::where('slug', $slug)
+            ->update ([
+                'title' => $request->input('title'),
+                'synopsis' => $request->input('title'),            
+                'content' => $request->input('content'),
+                'slug' => SlugService::createSlug(Articles::class, 'slug', $request->title),
+                'user_id' => auth()->user()->id  
+            ]);
 
         return redirect('/articles');
     }
 
-    public function show ($id)
+    public function destroy($slug)
     {
-        $article = Articles::find ($id);
-        return view('article.page', [
-            'data' => $article
-        ]);
-    }
-
-    public function destroy ($id)
-    {
-        $article = Articles::find($id);
+        $article = Articles::where('slug', $slug);
         $article->delete();
 
         return redirect('/articles');

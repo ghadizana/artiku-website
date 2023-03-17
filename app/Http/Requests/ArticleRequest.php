@@ -33,7 +33,7 @@ class ArticleRequest extends FormRequest
             'title' => ['required', $rule_article_unique],
             'synopsis' => ['required'],
             'content' => ['required'],
-            'image' => ['required']
+            'image' => ['required'],
         ];
     }
 
@@ -41,6 +41,7 @@ class ArticleRequest extends FormRequest
     {
         return [
             'required' => 'This column must be filled',
+            'image' => 'This image must contain with JPG'
         ];
     }
 }

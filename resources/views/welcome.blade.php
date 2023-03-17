@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('main')
     <!-- Carousel -->
     <div id="carouselExampleCaptions" class="carousel slide">
@@ -42,34 +43,29 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
+@endsection
 
+@section('second')
     <!-- Card -->
-    @foreach ($data as $item)
-    <div class="row">
-        <div class="col-sm-6 mb-3 mb-sm-0">
-            <div class="card">
-                <div class="card-body">
-                    <img src="#" alt="Foto-1" max-width="576px" href="{{ $item->image }}">
-                    <h5 class="card-title">{{ $item->title }}</h5>
-                    <p class="card-text">{{ $item->synopsis }}</p>
-                    {{-- <p class="card-text">{{ $item->content }}</p> --}}
-                    <a href="{{ url("/articles/$item->id") }}" class="btn btn-primary">Read More</a>
+    <div class="container mt-5 p-3">
+        <div class="row">
+            @foreach ($article as $item)
+                <div class="col-md-6">
+                    <div class="card" style="width: 34rem">
+                        <img src="post-image/{{ $item->image }}" class="card-img-top " style="width:34rem; height:15rem"
+                            alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $item->title }}</h5>
+                            <h6 class="card-title">By : {{ $item->user->name }}</h6>
+                            <p class="card-text">{{ $item->synopsis }}</p>
+                            <p class="card-text"><small class="text-muted">Created on
+                                    {{ date('jS M Y', strtotime($item->updated_at)) }}</small>
+                            </p>
+                            <a href="{{ url("/articles/$item->slug") }}" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            @endforeach
         </div>
-        {{-- <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <img src="" alt="Foto-1" max-width="576px" {{ $item->image }}>
-                    <h5 class="card-title">{{ $item->title }}</h5>
-                    <p class="card-text">{{ $item->synopsis }}</p>
-                    <p class="card-text">{{ $item->content }}</p>
-                    <a href="{{ url("/articles/$item->id") }}" class="btn btn-primary">Read More</a>
-
-                </div>
-            </div>
-        </div> --}}
     </div>
-    
-    @endforeach
 @endsection
