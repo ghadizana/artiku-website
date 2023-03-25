@@ -31,9 +31,12 @@
                                     </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" class="btn btn-outline-danger btn-lg rounded-pill shadow">Login</button>
+                                        <button type="submit" class="btn btn-outline-danger text-red btn-lg shadow">Login</button>
                                     </div>
 
+                                    <a href="{{ route('password.request') }}" class="btn btn-link">
+                                        Forgot your password?
+                                    </a>
                                 </form>
 
                             </div>

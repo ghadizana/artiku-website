@@ -51,7 +51,7 @@
         <div class="row">
             @foreach ($article as $item)
                 <div class="col-md-6">
-                    <div class="card" style="width: 34rem">
+                    <div class="card border-light shadow mb-3" style="width: 34rem">
                         <img src="post-image/{{ $item->image }}" class="card-img-top " style="width:34rem; height:15rem"
                             alt="...">
                         <div class="card-body">
@@ -61,7 +61,7 @@
                             <p class="card-text"><small class="text-muted">Created on
                                     {{ date('jS M Y', strtotime($item->updated_at)) }}</small>
                             </p>
-                            <a href="{{ url("/articles/$item->slug") }}" class="btn btn-primary">Read More</a>
+                            <a href="{{ url("/articles/$item->slug") }}" class="btn btn-danger text-white">Read More</a>
                         </div>
                     </div>
                 </div>
