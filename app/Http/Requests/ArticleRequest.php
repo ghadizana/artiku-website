@@ -24,15 +24,15 @@ class ArticleRequest extends FormRequest
      */
     public function rules()
     {
-        $rule_article_unique = Rule::unique('articles', 'title');
+        $rule_article_unique = Rule::unique('articles', 'content');
         if ($this->method() !== 'POST') {
             $rule_article_unique->ignore($this->route()->parameter('id'));
         }
 
         return [
-            'title' => ['required', $rule_article_unique],
+            'title' => ['required'],
             'synopsis' => ['required'],
-            'content' => ['required'],
+            'content' => ['required', $rule_article_unique],
             'image' => ['required'],
         ];
     }
@@ -41,7 +41,7 @@ class ArticleRequest extends FormRequest
     {
         return [
             'required' => 'This column must be filled',
-            'image' => 'This image must contain with JPG'
+            'image' => 'This image must contain with JPG or PNG or JPEG and max: 5048'
         ];
     }
 }

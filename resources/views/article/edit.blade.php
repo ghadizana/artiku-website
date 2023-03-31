@@ -47,7 +47,7 @@
         </div>
         <div class="col-md-4 col-sm-12 p-4" style="height: 120px !important">
           <div class="form-group col">
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-danger">Update</button>
           </div>
         </div>
       </form>

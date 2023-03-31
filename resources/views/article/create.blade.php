@@ -1,16 +1,6 @@
 @extends('layouts.app')
 @section('main')
 <div class="container" style="margin-top: 100px">
-  @if ($errors->any())
-      <div class="w-4/5 m-auto">
-        <ul>
-          @foreach ($errors->all() as $error)
-              <li class="w-1/5 mb-4 text-gray-50 bg-red-700 rounded-2xl py-4">
-              {{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-  @endif
     <div class="row">
       <form method="POST" action="{{ url('/articles') }}" enctype="multipart/form-data">
         @csrf
@@ -56,7 +46,7 @@
         </div>
         <div class="col-md-4 col-sm-12 p-4" style="height: 120px !important">
           <div class="form-group col">
-            <input type="submit" class="form-control btn btn-primary" value="Upload" />
+            <input type="submit" class="form-control btn btn-danger" value="Upload" />
           </div>
         </div>
       </form>

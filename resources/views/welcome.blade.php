@@ -56,7 +56,7 @@
                             alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->title }}</h5>
-                            <h6 class="card-title">By : {{ $item->user->name }}</h6>
+                            <h6 class="card-title">Author : {{ $item->user->name }}</h6>
                             <p class="card-text">{{ $item->synopsis }}</p>
                             <p class="card-text"><small class="text-muted">Created on
                                     {{ date('jS M Y', strtotime($item->updated_at)) }}</small>

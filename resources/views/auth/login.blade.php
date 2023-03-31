@@ -17,8 +17,12 @@
                                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="email" name="email" class="form-control shadow border-0" />
-                                            <label class="form-label">Your
-                                                Email</label>
+                                            <label class="form-label">Your Email</label>
+                                            @error('email')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                         </div>
                                     </div>
 
@@ -27,11 +31,17 @@
                                         <div class="form-outline flex-fill mb-0">
                                             <input type="password" name="password" class="form-control shadow border-0" />
                                             <label class="form-label">Password</label>
+                                            @error('password')
+                                                <p class="text-danger">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
                                         </div>
                                     </div>
 
                                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                        <button type="submit" class="btn btn-outline-danger text-red btn-lg shadow">Login</button>
+                                        <button type="submit"
+                                            class="btn btn-outline-danger text-red btn-lg shadow">Login</button>
                                     </div>
 
                                     <a href="{{ route('password.request') }}" class="btn btn-link">

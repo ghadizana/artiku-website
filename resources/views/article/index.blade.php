@@ -15,7 +15,7 @@
         </div>
 
         <div class="row">
-            @foreach ($data as $item)
+            @foreach ($article as $item)
                 <div class="col-md-6 mb-3">
                     <div class="card bg-primmary-bg-subtle" style="width: 34rem">
                         <img src="post-image/{{ $item->image }}" class="card-img-top " style="width:34rem; height:15rem"

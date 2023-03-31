@@ -14,12 +14,10 @@ class ArticleController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index () 
     {
-        $article = Articles::all();
-        return view('article.index', [
-            'data' => $article
-        ]);
+        return view('article.index')
+            ->with('article', Articles::orderBy('updated_at', 'DESC')->get());
     }
 
     public function create()
