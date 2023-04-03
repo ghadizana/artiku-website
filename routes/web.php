@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ArticleController;
-use App\Models\Articles;
-use Symfony\Component\Console\Input\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +23,4 @@ Route::post('/articles', [ArticleController::class, 'store']);
 Route::patch('articles/{id:slug}', [ArticleController::class, 'update']);
 Route::delete('/articles/{id:slug}', [ArticleController::class, 'destroy']);
 Route::get('/articles/{id:slug}/edit', [ArticleController::class, 'edit']);
-Route::get('/about', [HomeController::class, 'about']);
 

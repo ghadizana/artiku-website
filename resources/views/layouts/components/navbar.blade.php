@@ -11,18 +11,16 @@
                  <li class="nav-item">
                      <a class="nav-link active" aria-current="page" href="{{ url('/') }}">Home</a>
                  </li>
-                 {{-- <li class="nav-item">
-                     <a class="nav-link active"  href="{{ url('/about') }}">About Me</a>
-                 </li> --}}
                  @guest
                      <li class="nav-item">
                          <a class="nav-link active" href="{{ route('login') }}" type="button">Login</a>
                      </li>
+
                      <li class="nav-item">
-                         <a class="btn btn-danger shadow rounded-pill" href="{{ route('register') }}"
+                        <a class="btn btn-danger shadow rounded-pill" href="{{ route('register') }}"
                              type="button">
                              Get Started
-                         </a>
+                        </a>
                      </li>
                  @else
                      <a href="{{ url('/articles') }}" class="nav-link active">My Blog</a>
@@ -31,16 +29,11 @@
                     document.getElementById('logout-form').submit();">Log
                          Out</a>
                  @endguest
+
                  <form action="{{ route('logout') }}" id="logout-form" method="POST">
                      @csrf
                  </form>
              </ul>
-             {{-- <form action="#" method="GET" class="d-flex" role="search">
-                @csrf
-                 <input class="form-control me-1" id="search" type="text" name="search" placeholder="Search"
-                     aria-label="Search" />
-                 <button class="btn btn-outline-success" type="submit">Search</button>
-             </form> --}}
          </div>
      </div>
  </nav>

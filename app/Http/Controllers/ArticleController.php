@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Articles;
 use Illuminate\Http\Request;
 use App\Http\Requests\ArticleRequest;
-use App\Models\Articles;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class ArticleController extends Controller
@@ -14,7 +14,7 @@ class ArticleController extends Controller
         $this->middleware('auth');
     }
 
-    public function index () 
+    public function index() 
     {
         return view('article.index')
             ->with('article', Articles::orderBy('updated_at', 'DESC')->get());
@@ -30,7 +30,7 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'image' => 'required|mimes:jpg,png,jpeg|max:5048'
+            'image' => 'required|mimes:jpg,png,jpeg|max:5048',
         ]);
 
         $newImageName = uniqid() . '-' . $request->title . '.' . 
@@ -43,7 +43,7 @@ class ArticleController extends Controller
             'content' => $request->input('content'),
             'slug' => SlugService::createSlug(Articles::class, 'slug', $request->title),
             'image' => $newImageName,
-            'user_id' => auth()->user()->id
+            'user_id' => auth()->user()->id,
         ]);
 
         return redirect('/articles');
@@ -58,7 +58,6 @@ class ArticleController extends Controller
     public function update(ArticleRequest $request, $slug)
     {
         $request->validate([
-            'title' => 'required',
             'content' => 'required'
         ]);
 
@@ -68,9 +67,9 @@ class ArticleController extends Controller
                 'synopsis' => $request->input('title'),            
                 'content' => $request->input('content'),
                 'slug' => SlugService::createSlug(Articles::class, 'slug', $request->title),
-                'user_id' => auth()->user()->id  
-            ]);
-
+                'user_id' => auth()->user()->id,  
+        ]);
+    
         return redirect('/articles');
     }
 

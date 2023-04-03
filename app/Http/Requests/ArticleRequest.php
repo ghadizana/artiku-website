@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
 class ArticleRequest extends FormRequest
 {
@@ -33,15 +33,13 @@ class ArticleRequest extends FormRequest
             'title' => ['required'],
             'synopsis' => ['required'],
             'content' => ['required', $rule_article_unique],
-            'image' => ['required'],
         ];
     }
 
-    public function messages () 
+    public function messages() 
     {
         return [
             'required' => 'This column must be filled',
-            'image' => 'This image must contain with JPG or PNG or JPEG and max: 5048'
         ];
     }
 }

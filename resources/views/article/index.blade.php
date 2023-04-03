@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('main')
-<br>
+    <br>
     <div class="container mt-5 p-3">
         <div class="row">
             <div class="col-md-4">
@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-md-4">
-                <a href="{{ url("/articles/data/create") }}" class="btn btn-outline-success rounded-pill shadow">Add Blog</a>
+                <a href="{{ url('/articles/data/create') }}" class="btn btn-outline-success rounded-pill shadow">Add Blog</a>
             </div>
         </div>
 
@@ -21,6 +21,7 @@
                         <img src="post-image/{{ $item->image }}" class="card-img-top " style="width:34rem; height:15rem"
                             alt="...">
                         <div class="card-body">
+
                             <h5 class="card-title">{{ $item->title }}</h5>
                             <h6 class="card-text">By : {{ $item->user->name }}</h6>
                             <p class="card-text"><small class="text-muted">Last updated
@@ -30,8 +31,10 @@
 
                             <div class="row">
                                 <div class="col-md-3">
-                                    <a href="{{ url("/articles/$item->slug") }}" class="btn btn-danger text-white">Read More</a>
+                                    <a href="{{ url("/articles/$item->slug") }}" class="btn btn-danger text-white">Read
+                                        More</a>
                                 </div>
+
                                 <div class="col-md-4">
                                     <form action="{{ url("/articles/$item->slug") }}" method="POST">
                                         @csrf

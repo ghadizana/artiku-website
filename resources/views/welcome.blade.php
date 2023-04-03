@@ -54,6 +54,7 @@
                     <div class="card border-light shadow mb-3" style="width: 34rem">
                         <img src="post-image/{{ $item->image }}" class="card-img-top " style="width:34rem; height:15rem"
                             alt="...">
+                            
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->title }}</h5>
                             <h6 class="card-title">Author : {{ $item->user->name }}</h6>

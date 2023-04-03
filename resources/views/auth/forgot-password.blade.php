@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('main')
-<br>
-<br>
+    <br>
+    <br>
     <div class="mt-5 mx-auto" style="width: 380px">
         <div class="card">
             <div class="card-body">
@@ -20,8 +20,9 @@
                             <span class="text-primary">
                                 {{ $message }}
                             </span>
-                        @enderror                    
+                        @enderror
                     </div>
+                    
                     <button type="submit" class="btn btn-outline-danger">Send Riset Link</button>
                 </form>
             </div>
